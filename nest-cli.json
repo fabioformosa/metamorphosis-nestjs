@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "metamorphosis-nest": {
+      "type": "library",
+      "root": "libs/metamorphosis-nest",
+      "entryFile": "index",
+      "sourceRoot": "libs/metamorphosis-nest/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/metamorphosis-nest/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true
+  }
+}

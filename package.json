@@ -1,0 +1,39 @@
+{
+  "name": "@fabio.formosa/metamorphosis-nest",
+  "version": "1.0.0",
+  "description": "Conversion service for Nest",
+  "main": "index.js",
+  "dependencies": {
+    "@fabio.formosa/metamorphosis": "^1.0.5",
+    "@nestjs/common": "^6.0.4",
+    "@nestjs/core": "^6.0.4",
+    "@nestjs/testing": "^6.0.4",
+    "@types/jest": "^24.0.19",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0"
+  },
+  "devDependencies": {
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.3",
+    "typescript": "^3.6.4"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabioformosa/metamorphosis-nest.git"
+  },
+  "keywords": [
+    "nodejs",
+    "nest",
+    "conversion",
+    "service"
+  ],
+  "author": "Fabio Formosa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fabioformosa/metamorphosis-nest/issues"
+  },
+  "homepage": "https://github.com/fabioformosa/metamorphosis-nest#readme"
+}
