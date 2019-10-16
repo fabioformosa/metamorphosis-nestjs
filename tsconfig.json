@@ -8,7 +8,7 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "moduleResolution": "node",
-    "allowJs": true,
+    "declaration": true,
     "typeRoots": ["node_modules/@types"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true

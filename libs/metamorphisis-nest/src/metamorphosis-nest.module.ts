@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { MetamorphosisNestService as MetamorphosisNestService } from './metamorphosis-nest.service';
+import { MetamorphosisNestService } from './metamorphosis-nest.service';
 
 @Module({
   providers: [MetamorphosisNestService],
