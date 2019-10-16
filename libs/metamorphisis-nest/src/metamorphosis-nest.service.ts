@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import ConversionService from '@fabio.formosa/metamorphosis/dist/src/service/conversion-service';
+import { ConversionService } from '@fabio.formosa/metamorphosis';
 
 
 @Injectable()

@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { MetamorphosisNestService } from './metamorphosis-nest.service';
-import IConverter from '@fabio.formosa/metamorphosis/dist/src/model/converter';
-import { Converter } from '@fabio.formosa/metamorphosis';
+import { Convert, Converter } from '@fabio.formosa/metamorphosis';
 
 class Car {
 
@@ -22,8 +21,8 @@ class CarDto{
   manufacturerName: string;
 }
 
-@Converter(Car, CarDto)
-export default class ConverterTest implements IConverter<Car, CarDto> {
+@Convert(Car, CarDto)
+export default class ConverterTest implements Converter<Car, CarDto> {
   
   public convert(source: Car): CarDto {
     const target = new CarDto();
