@@ -57,7 +57,7 @@ describe('MetamorphosisNestService', () => {
     service = module.get<MetamorphosisNestService>(MetamorphosisNestService);
   });
 
-  it('should be defined', () => {
+  it('should be convert a class in another one', () => {
     expect(service).toBeDefined();
 
     const ferrari = new Manufacturer('Ferrari', 'Italy');
