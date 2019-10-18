@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ConversionService } from '../src/metamorphosis-nest.service';
+import { ConversionService } from '../src/metamorphosis.service';
 import { Convert, Converter } from '@fabio.formosa/metamorphosis';
 
 class Car {

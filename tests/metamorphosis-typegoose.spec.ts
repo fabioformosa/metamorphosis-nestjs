@@ -5,7 +5,7 @@ import { ConnectionOptions } from 'mongoose';
 import { ObjectID } from 'bson';
 import { Converter, Convert } from '@fabio.formosa/metamorphosis';
 import { TestingModule, Test } from '@nestjs/testing';
-import { ConversionService } from '../src/metamorphosis-nest.service';
+import { ConversionService } from '../src/metamorphosis.service';
 
 @modelOptions({
   existingMongoose: mongoose,

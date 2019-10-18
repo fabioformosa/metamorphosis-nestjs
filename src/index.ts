@@ -1,2 +1,2 @@
 export * from './metamorphosis.module';
-export * from './metamorphosis-nest.service';
+export * from './metamorphosis.service';
