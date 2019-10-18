@@ -4,7 +4,7 @@
   "description": "Conversion service for Nest",
   "main": "dist/index.js",
   "dependencies": {
-    "@fabio.formosa/metamorphosis": "^1.1.4",
+    "@fabio.formosa/metamorphosis": "^1.2.3",
     "@nestjs/common": "^6.0.4",
     "@nestjs/core": "^6.0.4",
     "@nestjs/testing": "^6.0.4",
@@ -12,10 +12,14 @@
     "rxjs": "^6.5.3"
   },
   "devDependencies": {
-    "typescript": "^3.6.4",
+    "@typegoose/typegoose": "^6.0.4",
     "@types/jest": "^24.0.19",
+    "@types/mongoose": "^5.5.21",
     "jest": "^24.9.0",
-    "ts-jest": "^24.1.0"
+    "mongodb-memory-server": "^5.2.8",
+    "mongoose": "^5.7.5",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.4"
   },
   "scripts": {
     "build": "tsc",
