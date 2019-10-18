@@ -1,21 +1,21 @@
 import { Injectable } from '@nestjs/common';
-import { ConversionService } from '@fabio.formosa/metamorphosis';
+import { ConversionService as MetamorphosisConversionService} from '@fabio.formosa/metamorphosis';
 import { getClassForDocument } from '@typegoose/typegoose';
 import { Model } from 'mongoose';
 
 
 @Injectable()
-export class MetamorphosisNestService {
+export class ConversionService {
 
-  private conversionService: ConversionService = new ConversionService();
+  private metamorphosisConversionService: MetamorphosisConversionService = new MetamorphosisConversionService();
 
   public convert(sourceObj: any, targetClass:{ new(...args: any): any }):any{
     if(sourceObj instanceof Model){
       const actualSourceType = getClassForDocument(sourceObj) || sourceObj.constructor;
-      return this.conversionService.convertBySource(sourceObj, actualSourceType, targetClass);
+      return this.metamorphosisConversionService.convertBySource(sourceObj, actualSourceType, targetClass);
     }
     else
-      return this.conversionService.convert(sourceObj, targetClass);
+      return this.metamorphosisConversionService.convert(sourceObj, targetClass);
   }
 
 }

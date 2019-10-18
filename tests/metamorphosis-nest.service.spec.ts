@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { MetamorphosisNestService } from '../src/metamorphosis-nest.service';
+import { ConversionService } from '../src/metamorphosis-nest.service';
 import { Convert, Converter } from '@fabio.formosa/metamorphosis';
 
 class Car {
@@ -47,14 +47,14 @@ class Manufacturer {
 }
 
 describe('MetamorphosisNestService', () => {
-  let service: MetamorphosisNestService;
+  let service: ConversionService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [MetamorphosisNestService],
+      providers: [ConversionService],
     }).compile();
 
-    service = module.get<MetamorphosisNestService>(MetamorphosisNestService);
+    service = module.get<ConversionService>(ConversionService);
   });
 
   it('should be convert a class in another one', () => {

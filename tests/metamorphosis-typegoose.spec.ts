@@ -1,12 +1,11 @@
 import { prop, modelOptions, getModelForClass, getClassForDocument } from '@typegoose/typegoose';
 import * as mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
-import { ModelType } from '@typegoose/typegoose/lib/types';
 import { ConnectionOptions } from 'mongoose';
 import { ObjectID } from 'bson';
 import { Converter, Convert } from '@fabio.formosa/metamorphosis';
 import { TestingModule, Test } from '@nestjs/testing';
-import { MetamorphosisNestService } from '../src/metamorphosis-nest.service';
+import { ConversionService } from '../src/metamorphosis-nest.service';
 
 @modelOptions({
   existingMongoose: mongoose,
@@ -67,7 +66,7 @@ class ConverterTest implements Converter<Player, PlayerDto> {
 }
 
 const converterTest = new ConverterTest();
-let conversionService: MetamorphosisNestService;
+let conversionService: ConversionService;
 
 describe('Conversion with typegoose', () => {
 
@@ -81,10 +80,10 @@ describe('Conversion with typegoose', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [MetamorphosisNestService],
+      providers: [ConversionService],
     }).compile();
 
-    conversionService = module.get<MetamorphosisNestService>(MetamorphosisNestService);
+    conversionService = module.get<ConversionService>(ConversionService);
   });
 
   
