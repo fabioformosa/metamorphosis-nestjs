@@ -10,7 +10,17 @@ import { ConversionService } from '../src/metamorphosis.service';
 @modelOptions({
   existingMongoose: mongoose,
   schemaOptions: { collection: 'players' },
-  })
+})
+
+class Team{
+  _id: ObjectID;
+  
+  @prop({require : true})
+  name: string;
+  
+  @prop({require : true})
+  city: string;
+}
 class Player{
     _id: ObjectID;
 
@@ -19,11 +29,22 @@ class Player{
     
     @prop()
     score: number;
-}
+    
+    @prop({require : true})
+    team: Team;
+  }
+  
 
 class PlayerDto{
   id: string;
   name: string;
+  team: string;
+}
+
+class TeamDto{
+  id: string;
+  name: string;
+  city: string;
 }
 
 const connect = async (): Promise<void> => {
@@ -54,18 +75,33 @@ const  getDataSource = async (): Promise<string> => {
 
 
 @Convert(Player, PlayerDto)
-class ConverterTest implements Converter<Player, PlayerDto> {
+class PlayerConverterTest implements Converter<Player, PlayerDto> {
   
   public convert(source: Player): PlayerDto {
     const target = new PlayerDto();
     target.id = source._id.toString();
     target.name = source.name;
+    target.team = source.team.name;
     return target;
   }
 
 }
 
-const converterTest = new ConverterTest();
+@Convert(Team, TeamDto)
+class TeamConverterTest implements Converter<Team, TeamDto> {
+  
+  public convert(source: Team): TeamDto {
+    const target = new TeamDto();
+    target.id = source._id.toString();
+    target.name = source.name;
+    target.city = source.city;
+    return target;
+  }
+
+}
+
+const playerConverterTest = new PlayerConverterTest();
+const teamConverterTest = new TeamConverterTest();
 let conversionService: ConversionService;
 
 describe('Conversion with typegoose', () => {
@@ -92,17 +128,26 @@ describe('Conversion with typegoose', () => {
 
       const player = await PlayerModel.create({
         name : 'Baggio', 
-        score: 100
+        score: 100,
+        team: { name: 'Inter', city: 'Milan'}
       });
       player.save();
 
       const foundPlayer = await PlayerModel.findOne({'name': 'Baggio'}).exec() || player;
       expect(foundPlayer).toBeDefined();
+      expect(foundPlayer.team).toBeDefined();
 
       const playerDto = conversionService.convert(foundPlayer, PlayerDto);
       expect(playerDto).toBeDefined();
       expect(playerDto).toHaveProperty('id');
       expect(playerDto.name).toBe('Baggio');
+      
+      const teamDto = conversionService.convert(foundPlayer.team, TeamDto);
+      expect(teamDto).toBeDefined();
+      expect(teamDto).toHaveProperty('id');
+      expect(teamDto.name).toBe('Inter');
+      expect(teamDto.city).toBe('Milan');
+
 
     });
 
