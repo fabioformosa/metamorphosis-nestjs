@@ -10,6 +10,8 @@ export class ConversionService {
   private metamorphosisConversionService: MetamorphosisConversionService = new MetamorphosisConversionService();
 
   public convert(sourceObj: any, targetClass:{ new(...args: any): any }):any{
+    // if(sourceObj instanceof Model || sourceObj instanceof EmbeddedDocument || sourceObj instanceof SingleNested){
+    const actualSourceType = getClassForDocument(sourceObj) || sourceObj.constructor;
     if(sourceObj instanceof Model){
       const actualSourceType = getClassForDocument(sourceObj) || sourceObj.constructor;
       return this.metamorphosisConversionService.convertBySource(sourceObj, actualSourceType, targetClass);

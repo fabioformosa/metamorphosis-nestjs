@@ -3,6 +3,7 @@ import * as mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { ConnectionOptions } from 'mongoose';
 import { ObjectID } from 'bson';
+import {plainToClass, Type} from 'class-transformer';
 import { Converter, Convert } from '@fabio.formosa/metamorphosis';
 import { TestingModule, Test } from '@nestjs/testing';
 import { ConversionService } from '../src/metamorphosis.service';
@@ -30,6 +31,7 @@ class Player{
     @prop()
     score: number;
     
+    @Type(() => Team)
     @prop({require : true})
     team: Team;
   }
@@ -133,15 +135,19 @@ describe('Conversion with typegoose', () => {
       });
       player.save();
 
-      const foundPlayer = await PlayerModel.findOne({'name': 'Baggio'}).exec() || player;
-      expect(foundPlayer).toBeDefined();
-      expect(foundPlayer.team).toBeDefined();
+      const foundPlayerModel = await PlayerModel.findOne({'name': 'Baggio'}).exec() || player;
+      expect(foundPlayerModel).toBeDefined();
+      expect(foundPlayerModel.team).toBeDefined();
 
-      const playerDto = conversionService.convert(foundPlayer, PlayerDto);
+      const playerDto = conversionService.convert(foundPlayerModel, PlayerDto);
       expect(playerDto).toBeDefined();
       expect(playerDto).toHaveProperty('id');
       expect(playerDto.name).toBe('Baggio');
       
+
+      const foundPlayer = plainToClass(Player, foundPlayerModel.toObject());
+      console.log
+
       const teamDto = conversionService.convert(foundPlayer.team, TeamDto);
       expect(teamDto).toBeDefined();
       expect(teamDto).toHaveProperty('id');
