@@ -1,6 +1,6 @@
 {
   "name": "@fabio.formosa/metamorphosis-nest",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Conversion service for Nest",
   "main": "dist/index.js",
   "dependencies": {
