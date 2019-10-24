@@ -27,7 +27,7 @@
     "build": "tsc",
     "test": "jest",
     "test-travis": "jest --maxWorkers=2",
-    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
+    "coveralls": "jest --maxWorkers=2 --coverage && cat ./tests/coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
