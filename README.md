@@ -57,12 +57,15 @@ class CarService{
   constructor(private convertionService: ConvertionService){}
 
   public getCar(id: string): CarDto{
-      const car: Car = CarModel.findById(id);
+      const car: Car = this.getCar(id);
       return <CarDto> this.convertionService.convert(car, CarDto);
   }
 
 }
 ```
+
+### TYPEGOOSE SUPPORT
+Todo
 
 ## REQUIREMENTS
 * TypeScript 3.2+
