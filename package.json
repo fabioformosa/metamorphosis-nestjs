@@ -25,7 +25,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "test-detect-open-handles": "jest --detectOpenHandles"
+    "test-travis": "jest --maxWorkers=2"
   },
   "repository": {
     "type": "git",
