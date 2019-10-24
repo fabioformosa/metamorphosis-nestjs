@@ -20,12 +20,14 @@
     "mongodb-memory-server": "^5.2.8",
     "mongoose": "^5.7.5",
     "ts-jest": "^24.1.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.6.4",
+    "coveralls": "^3.0.7"
   },
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "test-travis": "jest --maxWorkers=2"
+    "test-travis": "jest --maxWorkers=2",
+    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
