@@ -1,7 +1,7 @@
-# metamorphosis-nest
+# METAMORPHOSIS-NEST
 **Metamorphosis** is set of libraries that provide utilities to convert objects from a class to another one. Tipically you'll have to convert entities to DTOs and/or viceversa.
 
-**Metamorphosis-nest** is the NodeJs version of Metamorphosis library, and it has been adapted to the popular framework NestJs. This module exports a conversion service, that you can import and use into your application as hub of all convertions.
+**Metamorphosis-nest** is the NodeJs version of Metamorphosis library, and it has been adapted to the popular framework [NestJS](https://nestjs.com). This module exports a conversion service, that you can import and use into your application as hub of all convertions.
 
 ## QUICK START
 
