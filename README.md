@@ -1,3 +1,5 @@
+![](https://travis-ci.org/fabioformosa/metamorphosis-nest.svg?branch=master)
+
 # METAMORPHOSIS-NEST
 **Metamorphosis** is set of libraries that provide utilities to convert objects from a class to another one. Tipically you'll have to convert entities to DTOs and/or viceversa.
 
