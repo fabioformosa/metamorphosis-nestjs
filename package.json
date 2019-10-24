@@ -24,7 +24,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "test-detect-open-handles": "jest --detectOpenHandles"
   },
   "repository": {
     "type": "git",
