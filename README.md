@@ -167,8 +167,6 @@ If you have to convert mongoose document into DTO, it's recommended to use [Type
           }
       ```
 
-      For further details, see this [jest test](./test/metamorphosis-typegoose.spec.ts)
-
 ## REQUIREMENTS
 * TypeScript 3.2+
 * Node 8.10+
