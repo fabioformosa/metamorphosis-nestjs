@@ -154,16 +154,17 @@ If you have to convert mongoose document into DTO, it's recommended to use [Type
         @Injectable()
         class MyService{
 
-          constructor(private readonly ConversionService conversionService)
-        }
+          constructor(private readonly ConversionService conversionService){}
         
-        const foundPlayerModel = await PlayerModel.findOne({'name': 'Baggio'}).exec() || player;
+          doIt(){      
+            const foundPlayerModel = await PlayerModel.findOne({'name': 'Baggio'}).exec() || player;
 
-        const playerDto = this.conversionService.convert(foundPlayerModel, PlayerDto);
+            const playerDto = this.conversionService.convert(foundPlayerModel, PlayerDto);
 
-        //if you want convert only the team (and not also the Player)
-        const foundPlayer = plainToClass(Player, foundPlayerModel.toObject());
-        const teamDto = conversionService.convert(foundPlayer.team, TeamDto);
+            //if you want convert only the team (and not also the Player)
+            const foundPlayer = plainToClass(Player, foundPlayerModel.toObject());
+            const teamDto = conversionService.convert(foundPlayer.team, TeamDto);
+          }
       ```
 
       For further details, see this [jest test](./test/metamorphosis-typegoose.spec.ts)
