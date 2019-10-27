@@ -143,10 +143,8 @@ describe('Conversion with typegoose', () => {
       expect(playerDto).toBeDefined();
       expect(playerDto).toHaveProperty('id');
       expect(playerDto.name).toBe('Baggio');
-      
 
       const foundPlayer = plainToClass(Player, foundPlayerModel.toObject());
-      console.log
 
       const teamDto = conversionService.convert(foundPlayer.team, TeamDto);
       expect(teamDto).toBeDefined();

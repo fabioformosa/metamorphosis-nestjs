@@ -68,7 +68,105 @@ class CarService{
 ```
 
 ### TYPEGOOSE SUPPORT
-Todo
+If you have to convert mongoose document into DTO, it's recommended to use [Typegoose](https://https://github.com/typegoose/typegoose) and [class-transformer](https://github.com/typestack/class-transformer).
+
+1. Define the type of your model and the moongose schema using decorators (`@prop`). (note: team is annotate by `@Type` decorator provided by class-transformer in order to use `plainToClass` function)
+    ```
+    @modelOptions({
+      existingMongoose: mongoose,
+      collection: 'players'
+    })
+    class Player{
+        _id: ObjectID;
+
+        @prop({require : true})
+        name: string;
+        
+        @prop()
+        score: number;
+        
+        @Type(() => Team)
+        @prop({require : true})
+        team: Team;
+    }
+
+    class Team{
+      _id: ObjectID;
+      
+      @prop({require : true})
+      name: string;
+      
+      @prop({require : true})
+      city: string;
+    }
+
+    ```
+  1. Define your DTOs
+
+      ```
+        class PlayerDto{
+          id: string;
+          name: string;
+          team: string;
+        }
+
+        class TeamDto{
+          id: string;
+          name: string;
+          city: string;
+        }
+      ```
+
+  1. Create converters
+      ```
+        import {Converter, Convert} from '@fabio.formosa/metamorphosis';
+
+        @Convert(Player, PlayerDto)
+        class PlayerConverterTest implements Converter<Player, PlayerDto> {
+          
+          public convert(source: Player): PlayerDto {
+            const target = new PlayerDto();
+            target.id = source._id.toString();
+            target.name = source.name;
+            target.team = source.team.name;
+            return target;
+          }
+
+        }
+
+        @Convert(Team, TeamDto)
+        class TeamConverterTest implements Converter<Team, TeamDto> {
+          
+          public convert(source: Team): TeamDto {
+            const target = new TeamDto();
+            target.id = source._id.toString();
+            target.name = source.name;
+            target.city = source.city;
+            return target;
+          }
+
+        }
+      ```
+  1. Use ConversionService
+      ```
+        import {ConversionService} from '@fabio.formosa/metamorphosis';
+
+        @Injectable()
+        class MyService{
+
+          constructor(private readonly ConversionService conversionService)
+        }
+        
+        const foundPlayerModel = await PlayerModel.findOne({'name': 'Baggio'}).exec() || player;
+
+        const playerDto = this.conversionService.convert(foundPlayerModel, PlayerDto);
+
+        //if you want convert only the team (and not also the Player)
+        const foundPlayer = plainToClass(Player, foundPlayerModel.toObject());
+        const teamDto = conversionService.convert(foundPlayer.team, TeamDto);
+      ```
+
+      For further details, see this [jest test](./test/metamorphosis-typegoose.spec.ts)
 
 ## REQUIREMENTS
 * TypeScript 3.2+
