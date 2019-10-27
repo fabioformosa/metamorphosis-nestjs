@@ -149,7 +149,7 @@ If you have to convert mongoose document into DTO, it's recommended to use [Type
       ```
   1. Use ConversionService
       ```
-        import {ConversionService} from '@fabio.formosa/metamorphosis';
+        import {ConversionService} from '@fabio.formosa/metamorphosis-nest';
 
         @Injectable()
         class MyService{
