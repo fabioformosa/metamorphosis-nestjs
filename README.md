@@ -9,7 +9,7 @@
 ## QUICK START
 
 ### INSTALL
-npm install --save @fabio.formosa/metamorphosis-nest
+`npm install --save @fabio.formosa/metamorphosis-nest`
 
 ### IMPORT MODULE
 
