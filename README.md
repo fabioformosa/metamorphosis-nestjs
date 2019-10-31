@@ -173,5 +173,5 @@ If you have to convert mongoose document into DTO, it's recommended to use [Type
 
 ## REQUIREMENTS
 * TypeScript 3.2+
-* Node 8.10+
+* Node 8, 10+
 * emitDecoratorMetadata and experimentalDecorators must be enabled in tsconfig.json
