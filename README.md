@@ -1,7 +1,7 @@
 ![](https://travis-ci.org/fabioformosa/metamorphosis-nest.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/fabioformosa/metamorphosis-nest/badge.svg?branch=master)](https://coveralls.io/github/fabioformosa/metamorphosis-nest?branch=master)
 
-# METAMORPHOSIS-NEST
+# METAMORPHOSIS-NESTJS
 
 > "Nothing is lost, nothing is created, everything is transformed"
 > _Lavoisier
@@ -9,6 +9,9 @@
 **Metamorphosis** is set of libraries that provide utilities to convert objects from a class to another one. Tipically you'll have to convert entities to DTOs and/or viceversa.
 
 **Metamorphosis-nest** is the NodeJs version of Metamorphosis library, and it has been adapted to the popular framework [NestJS](https://nestjs.com). This module exports a conversion service, that you can import and use into your application as hub of all convertions.
+
+![Red Chameleon - ph. George Lebada - pexels.com!](https://images.pexels.com/photos/567540/pexels-photo-567540.jpeg?auto=compress&cs=tinysrgb&h=325&w=470 "Red Chameleon - ph. George Lebada - pexels.com")
+
 
 ## QUICK START
 
@@ -193,3 +196,6 @@ Soon, it will be possible to pass a custom logger.
 * TypeScript 3.2+
 * Node 8, 10+
 * emitDecoratorMetadata and experimentalDecorators must be enabled in tsconfig.json
+
+## CREDITS
+Red Chameleon in this README file is a picture of ph. George Lebada (pexels.com)
