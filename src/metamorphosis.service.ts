@@ -7,7 +7,11 @@ import { Model } from 'mongoose';
 @Injectable()
 export class ConversionService {
 
-  private metamorphosisConversionService: MetamorphosisConversionService = new MetamorphosisConversionService();
+  private metamorphosisConversionService: MetamorphosisConversionService;
+
+  constructor(logger: boolean = false){
+    this.metamorphosisConversionService = new MetamorphosisConversionService({debugMode: logger});
+  }
 
   public convert(sourceObj: any, targetClass:{ new(...args: any): any }):any{
     // if(sourceObj instanceof Model || sourceObj instanceof EmbeddedDocument || sourceObj instanceof SingleNested){

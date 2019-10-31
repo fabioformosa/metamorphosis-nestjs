@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ConversionService } from '../src/metamorphosis.service';
 import { Convert, Converter } from '@fabio.formosa/metamorphosis';
+import { MetamorphosisModule } from '../src/metamorphosis.module';
 
 class Car {
 
@@ -34,8 +35,6 @@ export default class ConverterTest implements Converter<Car, CarDto> {
 
 }
 
-const converterTest = new ConverterTest();
-
 class Manufacturer {
   name: string;
   country: string;
@@ -51,7 +50,8 @@ describe('MetamorphosisNestService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ConversionService],
+      imports: [MetamorphosisModule.register({logger: true})],
+      providers: [ConverterTest]
     }).compile();
 
     service = module.get<ConversionService>(ConversionService);

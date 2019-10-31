@@ -26,7 +26,7 @@ describe('Conversion with typegoose', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [MetamorphosisModule],
+      imports: [MetamorphosisModule.register()],
       providers: [PlayerConverterTest, TeamConverterTest]
     }).compile();
 
