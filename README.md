@@ -171,7 +171,7 @@ If you have to convert mongoose document into DTO, it's recommended to use [Type
           }
       ```
 
-## DEBUG MODEL
+## DEBUG MODE
 
 To activate debug mode
 
