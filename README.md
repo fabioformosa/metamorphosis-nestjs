@@ -21,7 +21,7 @@
 import { MetamorphosisNestModule } from '@fabio.formosa/metamorphosis-nest';
 
 @Module({
-  imports: [MetamorphosisNestModule],
+  imports: [MetamorphosisModule.register()],
   ...
 }
 export class MyApp{
@@ -170,6 +170,24 @@ If you have to convert mongoose document into DTO, it's recommended to use [Type
             const teamDto = conversionService.convert(foundPlayer.team, TeamDto);
           }
       ```
+
+## DEBUG MODEL
+
+To activate debug mode
+
+```
+import { MetamorphosisNestModule } from '@fabio.formosa/metamorphosis-nest';
+
+@Module({
+  imports: [MetamorphosisModule.register({logger: true})],
+  ...
+}
+export class MyApp{
+}
+```
+
+At the moment, MetamorphosisNestModule uses console to log.
+Soon, it will be possible to pass a custom logger.
 
 ## REQUIREMENTS
 * TypeScript 3.2+
