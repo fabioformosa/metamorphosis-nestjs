@@ -1,7 +1,7 @@
 ![](https://travis-ci.org/fabioformosa/metamorphosis-nest.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/fabioformosa/metamorphosis-nest/badge.svg?branch=master)](https://coveralls.io/github/fabioformosa/metamorphosis-nest?branch=master)
 
-# METAMORPHOSIS-NEST
+# METAMORPHOSIS-NESTJS
 
 > "Nothing is lost, nothing is created, everything is transformed"
 > _Lavoisier
