@@ -1,49 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ConversionService } from '../src/metamorphosis.service';
-import { Convert, Converter } from '@fabio.formosa/metamorphosis';
 import { MetamorphosisModule } from '../src/metamorphosis.module';
-
-class Car {
-
-  model: string;
-  color: string;
-  manufacturer: Manufacturer;
-
-  constructor(model: string, color: string, manufacturer: Manufacturer) {
-    this.model = model;
-    this.color = color;
-    this.manufacturer = manufacturer
-  }
-}
-
-class CarDto{
-  model: string;
-  color: string;
-  manufacturerName: string;
-}
-
-@Convert(Car, CarDto)
-export default class ConverterTest implements Converter<Car, CarDto> {
-  
-  public convert(source: Car): CarDto {
-    const target = new CarDto();
-    target.color = source.color;
-    target.model = source.model;
-    target.manufacturerName = source.manufacturer.name;
-    return target;
-  }
-
-}
-
-class Manufacturer {
-  name: string;
-  country: string;
-
-  constructor(name: string, country: string) {
-    this.name = name;
-    this.country = country;
-  }
-}
+import CarDto from './dtos/car.dto';
+import Car from './models/car';
+import Manufacturer from './models/manufacturer';
+import CarToCarDtoConverter from './converters/car-to-carDto.converter';
 
 describe('MetamorphosisNestService', () => {
   let service: ConversionService;
@@ -51,7 +12,7 @@ describe('MetamorphosisNestService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [MetamorphosisModule.register({logger: true})],
-      providers: [ConverterTest]
+      providers: [CarToCarDtoConverter]
     }).compile();
 
     service = module.get<ConversionService>(ConversionService);
