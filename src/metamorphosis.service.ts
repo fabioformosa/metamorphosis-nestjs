@@ -9,8 +9,8 @@ export class ConversionService {
 
   private metamorphosisConversionService: MetamorphosisConversionService;
 
-  constructor(logger: boolean = false){
-    this.metamorphosisConversionService = new MetamorphosisConversionService({debugMode: logger});
+  constructor(logger: boolean | ((msg: string) => void) = false){
+    this.metamorphosisConversionService = new MetamorphosisConversionService({logger});
   }
 
   public convert(sourceObj: any, targetClass:{ new(...args: any): any }):any{

@@ -188,6 +188,23 @@ import { MetamorphosisNestModule } from '@fabio.formosa/metamorphosis-nest';
 export class MyApp{
 }
 ```
+In this case, metamorphosis will send log to console. Otherwise, you can pass a custom debug function `(msg: string) => void` , e.g:
+```
+import { MetamorphosisNestModule } from '@fabio.formosa/metamorphosis-nest';
+
+const myCustomLogger = {
+  debug: (msg: string) => {
+    winston.logger(msg); //example
+  }
+}
+
+@Module({
+  imports: [MetamorphosisModule.register({logger: myCustomLogger.debug})],
+  ...
+}
+export class MyApp{
+}
+```
 
 At the moment, MetamorphosisNestModule uses console to log.
 Soon, it will be possible to pass a custom logger.

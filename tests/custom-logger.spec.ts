@@ -3,19 +3,18 @@ import { ConversionService } from '../src/metamorphosis.service';
 import { MetamorphosisModule } from '../src/metamorphosis.module';
 import CarToCarDtoConverter from './converters/car-to-carDto.converter';
 import TestFactory from './test-factory';
-import Manufacturer from './models/manufacturer';
-import Car from './models/car';
-import CarDto from './dtos/car.dto';
 
 
-describe('MetamorphosisNestService', () => {
+describe('Custom Logger Test Suite', () => {
   const injectables = {
     conversionService: {}
   }
 
   beforeEach(async () => {
+    const loggerMock = jest.fn();
+
     const module: TestingModule = await Test.createTestingModule({
-      imports: [MetamorphosisModule.register({logger: true})],
+      imports: [MetamorphosisModule.register({logger: loggerMock})],
       providers: [CarToCarDtoConverter]
     }).compile();
 
