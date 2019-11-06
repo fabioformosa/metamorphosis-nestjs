@@ -1,20 +1,14 @@
 import { Module, DynamicModule } from '@nestjs/common';
 import { ConversionService } from './metamorphosis.service';
 
-// @Module({
-//   providers: [ConversionService],
-//   exports: [ConversionService],
-// })
-// export class MetamorphosisModule {}
-
-const ConversionServiceFactory = (logger: boolean = false) => ({
+const ConversionServiceFactory = (logger : boolean | ((msg: string) => void) = false) => ({
   provide: 'ConversionService',
   useFactory: () =>  new ConversionService(logger)
 });
 
 @Module({})
 export class MetamorphosisModule {
-  static register({logger}: {logger: boolean} = {logger: false}): DynamicModule {
+  static register({logger}: {logger: boolean | ((msg: string) => void)} = {logger: false}): DynamicModule {
     return {
       module: MetamorphosisModule,
       providers: [ConversionServiceFactory(logger)],
