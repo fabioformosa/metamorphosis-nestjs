@@ -19,7 +19,9 @@ describe('MetamorphosisNestService', () => {
     injectables.conversionService = module.get<ConversionService>(ConversionService);
   });
 
-  it('should be convert a class in another one', TestFactory.getSimpleTest(injectables));
+  it('should convert a class in another one', TestFactory.getSimpleTest(injectables));
+
+  it('should convert an array in another one', TestFactory.getArrayTest(injectables));
   
 });
 

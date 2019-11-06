@@ -74,6 +74,15 @@ class CarService{
 }
 ```
 
+## ADVANCED FEATURES
+
+### CONVERT ARRAYS
+
+```
+const cars: Car[] = ...
+const carDtos: CarDto[] =  this.convertionService.convertAll(cars, CarDto);
+```
+
 ### TYPEGOOSE SUPPORT
 If you have to convert mongoose document into DTO, it's recommended to use [Typegoose](https://https://github.com/typegoose/typegoose) and [class-transformer](https://github.com/typestack/class-transformer).
 
@@ -174,7 +183,7 @@ If you have to convert mongoose document into DTO, it's recommended to use [Type
           }
       ```
 
-## DEBUG MODE
+### DEBUG MODE
 
 To activate debug mode
 

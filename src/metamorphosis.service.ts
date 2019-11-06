@@ -13,7 +13,7 @@ export class ConversionService {
     this.metamorphosisConversionService = new MetamorphosisConversionService({logger});
   }
 
-  public convert(sourceObj: any, targetClass:{ new(...args: any): any }):any{
+  public convert(sourceObj: any, targetClass:{ new(...args: any): any }): any {
     // if(sourceObj instanceof Model || sourceObj instanceof EmbeddedDocument || sourceObj instanceof SingleNested){
     if(sourceObj instanceof Model){
       const actualSourceType = getClassForDocument(sourceObj) || sourceObj.constructor;
@@ -21,6 +21,10 @@ export class ConversionService {
     }
     else
       return this.metamorphosisConversionService.convert(sourceObj, targetClass);
+  }
+
+  public convertAll(sourceArray: any[], itemTargetClass:{ new(...args: any): any }): any[] {
+    return sourceArray.map(sourceObj => this.convert(sourceObj, itemTargetClass));
   }
 
 }
