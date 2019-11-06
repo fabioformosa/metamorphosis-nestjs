@@ -8,7 +8,7 @@ const TestFactory = {
       return () => {
         const conversionService: ConversionService = injectables.conversionService;  
         expect(conversionService).toBeDefined();
-
+    
         const ferrari = new Manufacturer('Ferrari', 'Italy');
         const car = new Car('purosangue', 'red', ferrari);
 
