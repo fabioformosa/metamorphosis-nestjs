@@ -1,4 +1,4 @@
-## **v2.0.1**  [UNRELEASED]
+## **v2.0.1** 
 
 **FIXED** Converted some dependecies in peer dependencies
 
