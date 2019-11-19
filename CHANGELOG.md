@@ -1,5 +1,8 @@
+## **v2.0.1**  [UNRELEASED]
 
- ## **v2.0.0** [UNRELEASED]
+**FIXED** Converted some dependecies in peer dependencies
+
+ ## **v2.0.0**
 
 **ADDED**  array conversion method
 ```
