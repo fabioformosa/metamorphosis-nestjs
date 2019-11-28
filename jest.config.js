@@ -10,5 +10,5 @@ module.exports = {
   testEnvironment: 'node',
   automock: true,
   unmockedModulePathPatterns: [],
-  moduleDirectories: ['node_modules', './'],
+  moduleDirectories: ['node_modules'],
 };

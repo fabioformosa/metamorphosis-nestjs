@@ -1,4 +1,4 @@
-import { getModelForClass } from '@typegoose/typegoose';
+import { getClassForDocument, getModelForClass } from '@typegoose/typegoose';
 
 import { plainToClass } from 'class-transformer';
 import { TestingModule, Test } from '@nestjs/testing';
@@ -53,7 +53,7 @@ describe('Conversion with typegoose', () => {
       expect(playerDto).toHaveProperty('id');
       expect(playerDto.name).toBe('Baggio');
 
-      const foundPlayer = plainToClass(Player, foundPlayerModel.toObject());
+      const foundPlayer = foundPlayerModel;
 
       const teamDto = conversionService.convert(foundPlayer.team, TeamDto);
       expect(teamDto).toBeDefined();

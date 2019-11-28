@@ -4,7 +4,7 @@
   "description": "Conversion service for Nest",
   "main": "dist/index.js",
   "dependencies": {
-    "@fabio.formosa/metamorphosis": "^2.0.0",
+    "@fabio.formosa/metamorphosis": "^2.1.0",
     "class-transformer": "^0.2.3"
   },
   "peerDependencies": {
@@ -15,7 +15,7 @@
     "rxjs": "^6.5.3"
   },
   "devDependencies": {
-    "@typegoose/typegoose": "^6.0.4",
+    "@typegoose/typegoose": "https://github.com/typegoose/typegoose.git#r6/nestedGetClass",
     "@types/jest": "^24.0.19",
     "@types/mongoose": "^5.5.21",
     "@nestjs/common": "^6.0.4",
@@ -26,14 +26,17 @@
     "rxjs": "^6.5.3",
     "jest": "^24.9.0",
     "mongodb-memory-server": "^5.2.8",
-    "mongoose": "^5.7.5",
+    "mongoose": "^5.7.7",
     "ts-jest": "^24.1.0",
     "typescript": "^3.6.4",
-    "coveralls": "^3.0.7"
+    "coveralls": "^3.0.7",
+    "ts-node": "^8.3.0",
+    "tsconfig-paths": "3.8.0"
   },
   "scripts": {
     "build": "tsc",
     "test": "jest",
+    "test:debug": "node --inspect-brk -r ts-node/register -r tsconfig-paths/register node_modules/jest/bin/jest --runInBand",
     "test-travis": "jest --maxWorkers=2",
     "coveralls": "jest --maxWorkers=2 --coverage && cat ./tests/coverage/lcov.info | coveralls"
   },
