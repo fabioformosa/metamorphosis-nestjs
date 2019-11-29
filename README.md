@@ -1,4 +1,4 @@
-![](https://travis-ci.org/fabioformosa/metamorphosis-nest.svg?branch=master)
+[![Build Status](https://travis-ci.org/fabioformosa/metamorphosis-nestjs.svg?branch=master)](https://travis-ci.org/fabioformosa/metamorphosis-nestjs)
 [![Coverage Status](https://coveralls.io/repos/github/fabioformosa/metamorphosis-nest/badge.svg?branch=master)](https://coveralls.io/github/fabioformosa/metamorphosis-nest?branch=master)
 
 # METAMORPHOSIS-NESTJS
