@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { ConversionService as MetamorphosisConversionService} from '@fabio.formosa/metamorphosis';
 import { getClassForDocument } from '@typegoose/typegoose';
-import { Model } from 'mongoose';
+import { getClass } from '@typegoose/typegoose/lib/internal/utils';
+import * as mongoose from 'mongoose';
 
 
 @Injectable()
@@ -14,9 +15,8 @@ export class ConversionService {
   }
 
   public convert(sourceObj: any, targetClass:{ new(...args: any): any }): any {
-    // if(sourceObj instanceof Model || sourceObj instanceof EmbeddedDocument || sourceObj instanceof SingleNested){
-    if(sourceObj instanceof Model){
-      const actualSourceType = getClassForDocument(sourceObj) || sourceObj.constructor;
+    if(sourceObj instanceof mongoose.Model || sourceObj instanceof mongoose.Schema.Types.Embedded || (sourceObj.constructor && sourceObj.constructor.name == 'SingleNested')){
+      const actualSourceType = getClass(sourceObj) || sourceObj.constructor;
       return this.metamorphosisConversionService.convertBySource(sourceObj, actualSourceType, targetClass);
     }
     else

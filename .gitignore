@@ -1,5 +1,5 @@
 node_modules
 dist
 tests/coverage
-.vscode/launch.json
 .vscode/settings.json
+.vscode/launch.json
