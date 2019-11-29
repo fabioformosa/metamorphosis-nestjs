@@ -1,6 +1,5 @@
 import { getClassForDocument, getModelForClass } from '@typegoose/typegoose';
 
-import { plainToClass } from 'class-transformer';
 import { TestingModule, Test } from '@nestjs/testing';
 import { MetamorphosisModule } from '../src/metamorphosis.module';
 import { ConversionService } from '../src/metamorphosis.service';
@@ -10,6 +9,10 @@ import PlayerDto from './dtos/player.dto';
 import TeamDto from './dtos/team.dto';
 import PlayerConverterTest from './converters/player-to-playerDto.converter';
 import TeamConverterTest from './converters/team-to-teamDto.converter';
+import Course from './models/course';
+import Student from './models/student';
+import CourseDTO from './dtos/course.dto';
+import CourseConverterTest from './converters/course-to-couseDto.converter';
 
 
 let conversionService: ConversionService;
@@ -27,7 +30,7 @@ describe('Conversion with typegoose', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [MetamorphosisModule.register()],
-      providers: [PlayerConverterTest, TeamConverterTest]
+      providers: [PlayerConverterTest, TeamConverterTest, CourseConverterTest]
     }).compile();
 
     conversionService = module.get<ConversionService>(ConversionService);
@@ -61,6 +64,41 @@ describe('Conversion with typegoose', () => {
       expect(teamDto.name).toBe('Inter');
       expect(teamDto.city).toBe('Milan');
 
+    });
+
+    it('should convert a typegoose model with reference', async () => {
+      const StudentModel = getModelForClass(Student);
+      
+      const fibonacci = await StudentModel.create({
+        name: 'Leonardo',
+        lastname: 'Fibonacci'
+      });
+      fibonacci.save();
+      const newton = await StudentModel.create({
+        name: 'Isaac',
+        lastname: 'Newton'
+      });
+      newton.save();
+
+      const CourseModel = getModelForClass(Course);
+      const mathCourse = await CourseModel.create({
+        name: 'Mathematics',
+        students: [fibonacci, newton]
+      });
+      mathCourse.save();
+
+      let foundCourse = await CourseModel.findOne({'name': 'Mathematics'}).populate({path: 'students', model: Student}).exec();
+      if(foundCourse === null)
+        throw new Error();
+      expect(foundCourse).toBeDefined();
+      expect(foundCourse).toHaveProperty('students');
+      expect(foundCourse.students).toBeDefined();
+      expect(foundCourse.students.length).toEqual(2);
+      
+      const courseDTO = conversionService.convert(foundCourse, CourseDTO);
+      expect(courseDTO).toHaveProperty('studentIds');
+      expect(courseDTO.studentIds[0]).toEqual(fibonacci.id);
+      expect(courseDTO.studentIds[1]).toEqual(newton.id);
 
     });
 
