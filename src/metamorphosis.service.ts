@@ -14,8 +14,10 @@ export class ConversionService {
   }
 
   public convert(sourceObj: any, targetClass:{ new(...args: any): any }): any {
-    if(sourceObj instanceof mongoose.Model || sourceObj instanceof mongoose.Schema.Types.Embedded || (sourceObj.constructor && sourceObj.constructor.name == 'SingleNested')){
-      logger.log(`CONVERSION SERVICE - Typegoose support - detected sourceObj ${sourceObj.construct} converting to ${targetClass}`);
+    if(sourceObj instanceof mongoose.Model || sourceObj instanceof mongoose.Schema.Types.Embedded 
+      || (sourceObj.constructor && sourceObj.constructor.name == 'EmbeddedDocument')
+      || (sourceObj.constructor && sourceObj.constructor.name == 'SingleNested')){
+      logger.log(`CONVERSION SERVICE - Typegoose support - detected sourceObj ${sourceObj.constructor.name} converting to ${targetClass.name}`);
       const actualSourceType = getClass(sourceObj) || sourceObj.constructor;
       logger.log(`CONVERSION SERVICE - Converting from actualSourceType ${actualSourceType.name} to ${targetClass.name}`);
       return this.metamorphosisConversionService.convertBySource(sourceObj, actualSourceType, targetClass);
