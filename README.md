@@ -178,7 +178,6 @@ If you have to convert mongoose document into DTO, it's recommended to use [Type
             const playerDto = this.conversionService.convert(foundPlayerModel, PlayerDto);
 
             //if you want convert only the team (and not also the Player)
-            const foundPlayer = plainToClass(Player, foundPlayerModel.toObject());
             const teamDto = conversionService.convert(foundPlayer.team, TeamDto);
           }
       ```
