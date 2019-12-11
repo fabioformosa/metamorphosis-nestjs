@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ConversionService } from '../src/metamorphosis.service';
 import { MetamorphosisModule } from '../src/metamorphosis.module';
 import CarToCarDtoConverter from './converters/car-to-carDto.converter';
-import TestFactory from './test-factory';
+import TestFactory from './car-test-factory';
 
 
 describe('Custom Logger Test Suite', () => {
