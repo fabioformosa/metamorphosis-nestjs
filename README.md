@@ -76,6 +76,13 @@ class CarService{
 
 ## ADVANCED FEATURES
 
+### CONVERT ARRAYS
+
+```
+const cars: Car[] = ...
+const carDtos: CarDto[] =  this.convertionService.convertAll(cars, CarDto);
+```
+
 ### ASYNC CONVERSIONS
 
 If your converter must be async (_eg. it must retrieve entities from DB_):
@@ -101,13 +108,11 @@ When you invoke conversionService you must apply `await` if you know for that co
 const planet = await conversionService.convert(planetDto, Planet);
 ```
 
-
-### CONVERT ARRAYS
-
+or in case of conversion of an array:
 ```
-const cars: Car[] = ...
-const carDtos: CarDto[] =  this.convertionService.convertAll(cars, CarDto);
+const planets = await Promise.all(conversionService.convert(planetDto, Planet));
 ```
+
 
 ### TYPEGOOSE SUPPORT
 If you have to convert mongoose document into DTO, it's recommended to use [Typegoose](https://https://github.com/typegoose/typegoose) and [class-transformer](https://github.com/typestack/class-transformer).
