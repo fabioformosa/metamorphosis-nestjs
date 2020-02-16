@@ -1,3 +1,20 @@
+## **v3.0.0** 
+
+**BREAKING CHANGE** ConvertionService now returns always a Promise also if all converters are not async. So, you must add `await` before all conversionService calls.
+
+from
+```
+const planet = conversionService.convert(planetDto, Planet);
+  or
+const carDtos: CarDto[] = this.convertionService.convertAll(cars, CarDto);
+```
+to
+```
+const planet = <Planet> await conversionService.convert(planetDto, Planet);
+  or
+const carDtos = <CarDto[]> await this.convertionService.convertAll(cars, CarDto);
+```
+
 ## **v2.0.1** 
 
 **FIXED** Converted some dependecies in peer dependencies

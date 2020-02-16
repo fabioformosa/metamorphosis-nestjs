@@ -13,23 +13,23 @@ export class ConversionService {
     this.metamorphosisConversionService = new MetamorphosisConversionService({logger});
   }
 
-  public convert(sourceObj: any, targetClass:{ new(...args: any): any }): any {
+  public async convert(sourceObj: any, targetClass:{ new(...args: any): any }): Promise<unknown> {
     if(sourceObj instanceof mongoose.Model || sourceObj instanceof mongoose.Schema.Types.Embedded 
       || (sourceObj.constructor && sourceObj.constructor.name == 'EmbeddedDocument')
       || (sourceObj.constructor && sourceObj.constructor.name == 'SingleNested')){
       logger.log(`CONVERSION SERVICE - Typegoose support - detected sourceObj ${sourceObj.constructor.name} converting to ${targetClass.name}`);
       const actualSourceType = getClass(sourceObj) || sourceObj.constructor;
       logger.log(`CONVERSION SERVICE - Converting from actualSourceType ${actualSourceType.name} to ${targetClass.name}`);
-      return this.metamorphosisConversionService.convertBySource(sourceObj, actualSourceType, targetClass);
+      return await this.metamorphosisConversionService.convertBySource(sourceObj, actualSourceType, targetClass);
     }
     else{
       logger.log(`CONVERSION SERVICE - Converting from ${sourceObj.constructor.name} to ${targetClass.name}`);
-      return this.metamorphosisConversionService.convert(sourceObj, targetClass);
+      return await this.metamorphosisConversionService.convert(sourceObj, targetClass);
     }
   }
 
-  public convertAll(sourceArray: any[], itemTargetClass:{ new(...args: any): any }): any[] {
-    return sourceArray.map(sourceObj => this.convert(sourceObj, itemTargetClass));
+  public convertAll(sourceArray: any[], itemTargetClass:{ new(...args: any): any }): Promise<unknown[]> {
+    return Promise.all(sourceArray.map(sourceObj => this.convert(sourceObj, itemTargetClass)));
   }
 
 }

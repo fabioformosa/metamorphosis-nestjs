@@ -66,9 +66,9 @@ class CarService{
 
   constructor(private convertionService: ConvertionService){}
 
-  public getCar(id: string): CarDto{
-      const car: Car = this.getCar(id);
-      return <CarDto> this.convertionService.convert(car, CarDto);
+  public async getCar(id: string): CarDto{
+      const car: Car = await CarModel.findById(id);
+      return <CarDto> await this.convertionService.convert(car, CarDto);
   }
 
 }
@@ -80,7 +80,7 @@ class CarService{
 
 ```
 const cars: Car[] = ...
-const carDtos: CarDto[] =  this.convertionService.convertAll(cars, CarDto);
+const carDtos = <CarDto[]>  await this.convertionService.convertAll(cars, CarDto);
 ```
 
 ### ASYNC CONVERSIONS
@@ -105,12 +105,12 @@ export default class PlanetDtoToPlanet implements Converter<PlanetDto, Promise<P
 When you invoke conversionService you must apply `await` if you know for that conversion is returned a `Promise`.
 
 ```
-const planet = await conversionService.convert(planetDto, Planet);
+const planet = <Planet> await conversionService.convert(planetDto, Planet);
 ```
 
 or in case of conversion of an array:
 ```
-const planets = await Promise.all(conversionService.convert(planetDto, Planet));
+const planets = <Planet[]> await Promise.all(conversionService.convert(planetDto, Planet));
 ```
 
 
@@ -206,10 +206,10 @@ If you have to convert mongoose document into DTO, it's recommended to use [Type
           doIt(){      
             const foundPlayerModel = await PlayerModel.findOne({'name': 'Baggio'}).exec() || player;
 
-            const playerDto = this.conversionService.convert(foundPlayerModel, PlayerDto);
+            const playerDto = <PlayerDto> await this.conversionService.convert(foundPlayerModel, PlayerDto);
 
             //if you want convert only the team (and not also the Player)
-            const teamDto = conversionService.convert(foundPlayer.team, TeamDto);
+            const teamDto = <TeamDto> await conversionService.convert(foundPlayer.team, TeamDto);
           }
       ```
 

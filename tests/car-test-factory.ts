@@ -5,14 +5,14 @@ import CarDto from "./dtos/car.dto";
 
 const TestFactory = {
     getSimpleTest: (injectables: any): jest.ProvidesCallback => {
-      return () => {
+      return async () => {
         const conversionService: ConversionService = injectables.conversionService;  
         expect(conversionService).toBeDefined();
     
         const ferrari = new Manufacturer('Ferrari', 'Italy');
         const car = new Car('purosangue', 'red', ferrari);
 
-        const carDto: CarDto = conversionService.convert(car, CarDto);
+        const carDto = <CarDto> await conversionService.convert(car, CarDto);
 
         expect(carDto.color).toBe('red');
         expect(carDto.model).toBe('purosangue');
@@ -20,7 +20,7 @@ const TestFactory = {
       }
     },
     getArrayTest: (injectables: any): jest.ProvidesCallback => {
-        return () => {
+        return async () => {
           const conversionService: ConversionService = injectables.conversionService;  
           expect(conversionService).toBeDefined();
 
@@ -30,7 +30,7 @@ const TestFactory = {
         
           const cars = [car1, car2];
 
-          const carDtos: CarDto[] = conversionService.convertAll(cars, CarDto);
+          const carDtos: CarDto[] = <CarDto[]> await conversionService.convertAll(cars, CarDto);
 
           const [carDto1, carDto2] = carDtos;
 

@@ -23,7 +23,7 @@ describe('Async Conversion Suite', () => {
     planetDto.id = '1';
     planetDto.name = 'saturn';
 
-    const planet = await conversionService.convert(planetDto, Planet);
+    const planet = <Planet> await conversionService.convert(planetDto, Planet);
     expect(planet.id).toBe('1');
     expect(planet.name).toBe('saturn');
   });
@@ -36,7 +36,7 @@ describe('Async Conversion Suite', () => {
     planetDto2.id = '2';
     planetDto2.name = 'jupiter';
 
-    const planets =  await Promise.all(conversionService.convertAll([planetDto1, planetDto2], Planet));
+    const planets = <Planet[]> await conversionService.convertAll([planetDto1, planetDto2], Planet);
     expect(planets.length).toBe(2);
     expect(planets[0].id).toBe('1');
     expect(planets[0].name).toBe('saturn');

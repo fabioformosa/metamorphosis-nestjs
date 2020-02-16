@@ -51,14 +51,14 @@ describe('Conversion with typegoose', () => {
       expect(foundPlayerModel).toBeDefined();
       expect(foundPlayerModel.team).toBeDefined();
 
-      const playerDto = conversionService.convert(foundPlayerModel, PlayerDto);
+      const playerDto = <PlayerDto> await conversionService.convert(foundPlayerModel, PlayerDto);
       expect(playerDto).toBeDefined();
       expect(playerDto).toHaveProperty('id');
       expect(playerDto.name).toBe('Baggio');
 
       const foundPlayer = foundPlayerModel;
 
-      const teamDto = conversionService.convert(foundPlayer.team, TeamDto);
+      const teamDto = <TeamDto> await conversionService.convert(foundPlayer.team, TeamDto);
       expect(teamDto).toBeDefined();
       expect(teamDto).toHaveProperty('id');
       expect(teamDto.name).toBe('Inter');
@@ -95,7 +95,7 @@ describe('Conversion with typegoose', () => {
       expect(foundCourse.students).toBeDefined();
       expect(foundCourse.students.length).toEqual(2);
       
-      const courseDTO = conversionService.convert(foundCourse, CourseDTO);
+      const courseDTO = <CourseDTO> await conversionService.convert(foundCourse, CourseDTO);
       expect(courseDTO).toHaveProperty('studentIds');
       expect(courseDTO.studentIds[0]).toEqual(fibonacci.id);
       expect(courseDTO.studentIds[1]).toEqual(newton.id);
