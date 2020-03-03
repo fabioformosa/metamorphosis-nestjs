@@ -117,7 +117,30 @@ const planets = <Planet[]> await Promise.all(conversionService.convert(planetDto
 ### TYPEGOOSE SUPPORT
 If you have to convert mongoose document into DTO, it's recommended to use [Typegoose](https://https://github.com/typegoose/typegoose) and [class-transformer](https://github.com/typestack/class-transformer).
 
+1. Add dependency:
+    ```
+    npm install --save @fabio.formosa/metamorphosis-typegoose-plugin
+    ```
+
+1. Register conversion service with `metamorphosis-typegoose-plugin`
+
+    ```
+    import { MetamorphosisNestModule } from '@fabio.formosa/metamorphosis-nest';
+    import TypegoosePlugin from '@fabio.formosa/metamorphosis-typegoose-plugin/dist/typegoose-plugin';
+    import { MetamorphosisPlugin } from '@fabio.formosa/metamorphosis';
+
+    @Module({
+      imports: [MetamorphosisModule.register({logger: false, plugins: [typegoosePlugin])],
+      ...
+    }
+    export class MyApp{
+    }
+    ```
+
 1. Define the type of your model and the moongose schema using decorators (`@prop`). (note: team is annotate by `@Type` decorator provided by class-transformer in order to use `plainToClass` function)
+
+  
+
     ```
     @modelOptions({
       existingMongoose: mongoose,
