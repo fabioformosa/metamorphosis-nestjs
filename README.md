@@ -129,6 +129,8 @@ If you have to convert mongoose document into DTO, it's recommended to use [Type
     import TypegoosePlugin from '@fabio.formosa/metamorphosis-typegoose-plugin/dist/typegoose-plugin';
     import { MetamorphosisPlugin } from '@fabio.formosa/metamorphosis';
 
+    const typegoosePlugin = new TypegoosePlugin();
+
     @Module({
       imports: [MetamorphosisModule.register({logger: false, plugins: [typegoosePlugin])],
       ...

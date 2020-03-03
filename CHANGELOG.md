@@ -1,3 +1,27 @@
+## **v4.0.0** 
+
+**BREAKING CHANGE** If you use the conversionService with typegoose, you have to import a new dependency and change the import from MetamorphosisNestModule
+
+  ```
+    npm install --save @fabio.formosa/metamorphosis-typegoose-plugin
+  ```
+and add plugin in MetamorphosisNestModule registration
+
+```
+    import { MetamorphosisNestModule } from '@fabio.formosa/metamorphosis-nest';
+    import TypegoosePlugin from '@fabio.formosa/metamorphosis-typegoose-plugin/dist/typegoose-plugin';
+    import { MetamorphosisPlugin } from '@fabio.formosa/metamorphosis';
+
+    const typegoosePlugin = new TypegoosePlugin();
+
+    @Module({
+      imports: [MetamorphosisModule.register({logger: false, plugins: [typegoosePlugin])],
+      ...
+    }
+    export class MyApp{
+    }
+```
+
 ## **v3.0.0** 
 
 **BREAKING CHANGE** ConvertionService now returns always a Promise also if all converters are not async. So, you must add `await` before all conversionService calls.
