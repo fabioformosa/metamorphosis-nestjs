@@ -1,10 +1,10 @@
 {
   "name": "@fabio.formosa/metamorphosis-nest",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Conversion service for NestJS",
   "main": "dist/index.js",
   "dependencies": {
-    "@fabio.formosa/metamorphosis": "^4.0.0",
+    "@fabio.formosa/metamorphosis": "4.1.0",
     "class-transformer": "^0.2.3"
   },
   "peerDependencies": {
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@typegoose/typegoose": "^6.1.6",
+    "@fabio.formosa/metamorphosis-typegoose-plugin": "1.0.2",
     "@types/jest": "^24.0.19",
     "@types/mongoose": "^5.5.21",
     "@nestjs/common": "^6.0.4",

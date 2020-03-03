@@ -13,9 +13,12 @@ import Course from './models/course';
 import Student from './models/student';
 import CourseDTO from './dtos/course.dto';
 import CourseConverterTest from './converters/course-to-couseDto.converter';
+import TypegoosePlugin from '@fabio.formosa/metamorphosis-typegoose-plugin/dist/typegoose-plugin';
+import { MetamorphosisPlugin } from '@fabio.formosa/metamorphosis';
 
 
 let conversionService: ConversionService;
+const typegoosePlugin: MetamorphosisPlugin = new TypegoosePlugin();
 
 describe('Conversion with typegoose', () => {
 
@@ -29,7 +32,7 @@ describe('Conversion with typegoose', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [MetamorphosisModule.register()],
+      imports: [MetamorphosisModule.register({logger: true, plugins: [typegoosePlugin]})],
       providers: [PlayerConverterTest, TeamConverterTest, CourseConverterTest]
     }).compile();
 
