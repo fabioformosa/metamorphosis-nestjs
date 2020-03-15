@@ -9,15 +9,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 @Convert(ProductDto, Product)
 export default class ProductDtoConverterTest implements Converter<ProductDto, Promise<Product>> {
 
-  // constructor( 
-  //   @InjectRepository(Product) 
-  //   private readonly productRepository: Repository<Product>){
-  //   console.log('Creating converter from ProductDto to Product');
-  // }
-
-  constructor(private readonly connection: Connection){
-    
-  }
+  constructor(private readonly connection: Connection){}
 
   public async convert(source: ProductDto): Promise<Product> {
     const productRepository: Repository<Product> = this.connection.getRepository(Product);

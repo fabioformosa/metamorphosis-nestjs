@@ -9,6 +9,8 @@ import ProductDto from './dtos/product.dto';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Database } from 'sqlite3';
 import ProductDtoConverterTest from './converters/productDto-to-product.converter';
+import { Product2 } from './entities/product2';
+import Product2ConverterTest from './converters/product2-to-productDto.converter';
 const sqlite3 = require('sqlite3');
 
 
@@ -51,11 +53,11 @@ beforeAll(async (done) => {
               TypeOrmModule.forRoot({
                 type: 'sqlite',
                 database: `${root}/tests/metamorphosis.sqlite3`,
-                entities: [Product],
+                entities: [Product, Product2],
                 synchronize: true,
               })
     ],
-    providers: [ProductConverterTest, ProductDtoConverterTest]
+    providers: [ProductConverterTest, ProductDtoConverterTest, Product2ConverterTest]
   }).compile();
 
   conversionService = module.get<ConversionService>(ConversionService);
@@ -73,6 +75,20 @@ describe('Conversion with typegoose', () => {
     product.name = 'smartphone';
     product.pieces = 50;
     product = await productRepository.save(product);
+    
+    productId = product.id;
+
+    const productDto: ProductDto = <ProductDto> await conversionService.convert(product, ProductDto);
+
+    expect(productDto.id).toBe(product.id);
+    expect(productDto.name).toBe(product.name);
+  });
+
+  it('should convert a typeorm entity into a dto (2)', async () => {
+    let product = new Product2();
+    product.name = 'smartphone';
+    product.pieces = 50;
+    product = await product.save();
     
     productId = product.id;
 
