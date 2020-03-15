@@ -14,18 +14,8 @@ export class ConversionService {
   }
 
   public async convert(sourceObj: any, targetClass:{ new(...args: any): any }): Promise<unknown> {
-    // if(sourceObj instanceof mongoose.Model || sourceObj instanceof mongoose.Schema.Types.Embedded 
-    //   || (sourceObj.constructor && sourceObj.constructor.name == 'EmbeddedDocument')
-    //   || (sourceObj.constructor && sourceObj.constructor.name == 'SingleNested')){
-    //   logger.log(`CONVERSION SERVICE - Typegoose support - detected sourceObj ${sourceObj.constructor.name} converting to ${targetClass.name}`);
-    //   const actualSourceType = getClass(sourceObj) || sourceObj.constructor;
-    //   logger.log(`CONVERSION SERVICE - Converting from actualSourceType ${actualSourceType.name} to ${targetClass.name}`);
-    //   return await this.metamorphosisConversionService.convertBySource(sourceObj, actualSourceType, targetClass);
-    // }
-    // else{
       logger.log(`CONVERSION SERVICE - Converting from ${sourceObj.constructor.name} to ${targetClass.name}`);
       return await this.metamorphosisConversionService.convert(sourceObj, targetClass);
-    // }
   }
 
   public convertAll(sourceArray: any[], itemTargetClass:{ new(...args: any): any }): Promise<unknown[]> {
