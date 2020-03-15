@@ -238,6 +238,54 @@ If you have to convert mongoose document into DTO, it's recommended to use [Type
           }
       ```
 
+### TYPEORM EXAMPLE
+
+typeORM is supported by metamorphosis. Following an example (it doesn't show the converter because it's trivial, if you read above the doc):
+```
+ let product = new Product();
+ product.name = 'smartphone';
+ product.pieces = 50;
+
+ const productRepository = connection.getRepository(Product);
+ product = await productRepository.save(product);
+
+
+ const productDto: ProductDto = <ProductDto> await conversionService.convert(product, ProductDto);
+```
+
+or if your entity extends `BaseEntity`
+
+```
+ let product = new Product();
+ product.name = 'smartphone';
+ product.pieces = 50;
+ product = await product.save(product);
+
+
+ const productDto: ProductDto = <ProductDto> await conversionService.convert(product, ProductDto);
+```
+
+In case of conversion from DTO to entity:
+```
+@Injectable()
+@Convert(ProductDto, Product)
+export default class ProductDtoConverterTest implements Converter<ProductDto, Promise<Product>> {
+
+  constructor(private readonly connection: Connection){}
+
+  public async convert(source: ProductDto): Promise<Product> {
+    const productRepository: Repository<Product> = this.connection.getRepository(Product);
+    const target: Product | undefined = await productRepository.findOne(source.id);
+    if(!target)
+      throw new Error(`not found any product by id ${source.id}`);
+    target.name = source.name;
+    return target;
+  }
+
+}
+```
+
+
 ### DEBUG MODE
 
 To activate debug mode
