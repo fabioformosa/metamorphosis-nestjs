@@ -1,7 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { ConversionHelper as MetamorphosisConversionService, logger, MetamorphosisPlugin} from '@fabio.formosa/metamorphosis';
-import { getClass } from '@typegoose/typegoose/lib/internal/utils';
-import * as mongoose from 'mongoose';
 
 
 @Injectable()
