@@ -1,5 +1,7 @@
 node_modules
 dist
 tests/coverage
+tests/metamorphosis.sqlite3
+tests/metamorphosis.sqlite3-journal
 .vscode/settings.json
 .vscode/launch.json

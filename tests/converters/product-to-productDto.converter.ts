@@ -7,7 +7,6 @@ import ProductDto from "../dtos/product.dto";
 @Convert(Product, ProductDto)
 export default class ProductConverterTest implements Converter<Product, ProductDto> {
 
-  
   constructor(){
     console.log('Creating converter from Product to ProductDto');
   }
