@@ -1,5 +1,7 @@
 src/**/*
+tests/**/*
 test/**/*
+dist/tests/*
 dist/test/*
 node_modules
 jest.config.js
