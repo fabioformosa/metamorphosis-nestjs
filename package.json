@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "dependencies": {
     "@fabio.formosa/metamorphosis": "4.1.1",
-    "class-transformer": "^0.2.3"
+    "class-transformer": "^0.3.1"
   },
   "peerDependencies": {
     "@nestjs/common": "^6.0.4",
@@ -25,7 +25,7 @@
     "@types/jest": "^25.1.0",
     "@types/mongoose": "^5.7.6",
     "@types/sqlite3": "^3.1.6",
-    "class-transformer": "^0.2.3",
+    "class-transformer": "^0.3.1",
     "coveralls": "^3.0.7",
     "jest": "^25.1.0",
     "mongodb-memory-server": "^5.2.8",
