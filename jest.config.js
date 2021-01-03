@@ -5,6 +5,15 @@ module.exports = {
     '^.+\\.(t|j)s$': 'ts-jest',
   },
   collectCoverageFrom: ['src/**/*.(t|j)s'],
+  coveragePathIgnorePatterns: [
+    "node_modules",
+    "test-config",
+    "interfaces",
+    "jestGlobalMocks.ts",
+    ".module.ts",
+    "<rootDir>/src/index.ts",
+    ".mock.ts"
+  ],
   collectCoverage: true,
   coverageDirectory: './tests/coverage',
   testEnvironment: 'node',
