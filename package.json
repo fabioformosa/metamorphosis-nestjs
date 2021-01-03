@@ -4,7 +4,7 @@
   "description": "Conversion service for NestJS",
   "main": "dist/index.js",
   "dependencies": {
-    "@fabio.formosa/metamorphosis": "4.1.1",
+    "@fabio.formosa/metamorphosis": "^4.1.5",
     "class-transformer": "^0.2.3"
   },
   "peerDependencies": {
