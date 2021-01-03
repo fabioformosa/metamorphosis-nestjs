@@ -5,3 +5,5 @@ tests/metamorphosis.sqlite3
 tests/metamorphosis.sqlite3-journal
 .vscode/settings.json
 .vscode/launch.json
+.idea
+*.iml
